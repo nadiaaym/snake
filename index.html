@@ -10,7 +10,7 @@
             width: 30px;
             height: 25px;
             background-color: blueviolet;
-            margin: 0.5px;
+            margin-left: inherit;
             display: inline-block;
 
         }
@@ -20,31 +20,41 @@
 <body>
     <script>
         var link;
-        var numOfLinks = 5;
+        var numOfLinks = 6;
         var i = 1;
-        while (i <= numOfLinks) {
-            link = document.createElement('div');
-            link.classList.add('link');
-            document.body.appendChild(link);
+        link = document.createElement('div');
+        link.classList.add('link');
+        document.body.appendChild(link);
+
+        while (i < numOfLinks) {
+            snake = link.cloneNode(true);
+            document.body.appendChild(snake);
             i++;
         }
 
-function movingSnake(position) {
-    position =  
+        function movingSnake(num) {
+            let newPositionNum;
+            for (let i = 0; i < 10; i++) {
+                num += 1;
+                newPositionNum = num + 1;                
+            }
+            position = setPosition(num);
+            document.querySelector('.link').style.marginLeft = position;
 
-    // return newPosition;
-}
-        
+            return newPositionNum;
+        };
+
+
+        function setPosition(number) {
+            let position = (number + 'px');
+            return position;
+
+        }
         function test() {
-            console.log(link);
+            console.log(movingSnake(200));
         };
 
         test();
-
-        // snake = link.cloneNode(true);
-        // document.body.appendChild(snake);
-
-
     </script>
 </body>
 
