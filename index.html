@@ -17,13 +17,12 @@
         }
     </style>
 </head>
-
 <body>
-
     <script>
         var link;
         var numOfLinks = 6;
         var i = 1;
+        const snakesPosition = document.querySelector('.link').style.marginLeft;
         link = document.createElement('div');
         link.classList.add('link');
         document.body.appendChild(link);
@@ -41,7 +40,7 @@
 
         function addPercentToPosition(number) {
             let position = (number + '%');
-            document.querySelector('.link').style.marginLeft = position;
+             snakesPosition = position;
             return position;
         }
 
@@ -53,7 +52,7 @@
         function movingSnake() {
             setInterval(function() {
                 counter++;
-                document.querySelector('.link').style.marginLeft = addPercentToPosition(counter);
+                snakesPosition = addPercentToPosition(counter);
             }, 100) 
         }
 
