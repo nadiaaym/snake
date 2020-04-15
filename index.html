@@ -12,12 +12,14 @@
             background-color: blueviolet;
             margin-left: inherit;
             display: inline-block;
+            transition: 0.8s;
 
         }
     </style>
 </head>
 
 <body>
+
     <script>
         var link;
         var numOfLinks = 6;
@@ -32,29 +34,34 @@
             i++;
         }
 
-        function movingSnake(num) {
-            let newPositionNum;
-            for (let i = 0; i < 10; i++) {
-                num += 1;
-                newPositionNum = num + 1;                
-            }
-            position = setPosition(num);
-            document.querySelector('.link').style.marginLeft = position;
-
-            return newPositionNum;
-        };
-
-
-        function setPosition(number) {
-            let position = (number + 'px');
-            return position;
-
+        function startPosition(num) {
+            let startPosition = num;
+            return startPosition;
         }
+
+        function addPercentToPosition(number) {
+            let position = (number + '%');
+            document.querySelector('.link').style.marginLeft = position;
+            return position;
+        }
+
+        addPercentToPosition(startPosition(5));
+
+        let counter = 0;
+        document.onclick = movingSnake;
+
+        function movingSnake() {
+            setInterval(function() {
+                counter++;
+                document.querySelector('.link').style.marginLeft = addPercentToPosition(counter);
+            }, 100) 
+        }
+
         function test() {
-            console.log(movingSnake(200));
+            
         };
 
-        test();
+        // test();
     </script>
 </body>
 
