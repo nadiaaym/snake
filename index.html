@@ -10,28 +10,33 @@
             width: 30px;
             height: 25px;
             background-color: blueviolet;
-            margin-left: inherit;
+            margin-left: 1%;
             display: inline-block;
             transition: 0.8s;
 
         }
     </style>
 </head>
+
 <body>
+    <div class="snake"></div>
+    <button class="start"> start</button>
+    <button class="stop"> stop</button>
     <script>
-        var link;
-        var numOfLinks = 6;
-        var i = 1;
-        const snakesPosition = document.querySelector('.link').style.marginLeft;
+        let link;
+        let numOfLinks = 6;
+        let i = 1;
         link = document.createElement('div');
         link.classList.add('link');
-        document.body.appendChild(link);
+        let snake = document.querySelector('.snake').appendChild(link);
+
 
         while (i < numOfLinks) {
-            snake = link.cloneNode(true);
-            document.body.appendChild(snake);
+            let links = link.cloneNode(true);
+            document.querySelector('.snake').appendChild(links);
             i++;
         }
+
 
         function startPosition(num) {
             let startPosition = num;
@@ -40,24 +45,30 @@
 
         function addPercentToPosition(number) {
             let position = (number + '%');
-             snakesPosition = position;
+            document.querySelector('.snake').style.marginLeft = position;
             return position;
         }
 
         addPercentToPosition(startPosition(5));
 
         let counter = 0;
-        document.onclick = movingSnake;
 
+        let x;
         function movingSnake() {
-            setInterval(function() {
+            x = setInterval(function () {
                 counter++;
-                snakesPosition = addPercentToPosition(counter);
-            }, 100) 
-        }
+                document.querySelector('.snake').style.marginLeft = addPercentToPosition(counter);
+            }, 100)
+        };
+        document.querySelector('.start').onclick = movingSnake;
+        document.querySelector('.stop').onclick = () => clearInterval(x);
+
+        // if (document.querySelector('.link').style.marginLeft = '100%') {
+        //     console.log('finish line!!');
+        // }
 
         function test() {
-            
+
         };
 
         // test();
